@@ -60,6 +60,8 @@ provider:
 functions:
   hello:
     handler: handler.hello
+    events:
+      - http: GET songs/hello
   addPlayedSong:
     handler: handler.addPlayedSong
     events:
@@ -76,6 +78,42 @@ functions:
     handler: handler.apiListener
     events:
       - http: POST songs/apiListener
+  roomGlance:
+    handler: handler.getRoomGlance
+    events:
+      - http:
+          path: roomGlance
+          method: get
+          integration: lambda
+          cors: true
+  associate:
+    handler: handler.associate
+    events:
+      - http:
+          path: associate
+          method: post
+          integration: lambda
+          cors: true
+  install:
+    handler: handler.install
+    events:
+      - http:
+          path: install
+          method: post
+          integration: lambda
+          cors: true
+  machineNameForRoom:
+    handler: handler.machineNameForRoom
+    events:
+      - http:
+          path: machineNameForRoom
+          method: post
+          integration: lambda
+          cors: true
+  roomGlancePush:
+    handler: handler.roomGlancePush
+    events:
+      - stream: arn:aws:dynamodb:us-east-1:366362311242:table/Songs/stream/2016-11-28T18:20:11.840
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
